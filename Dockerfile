@@ -1,18 +1,19 @@
-FROM node:24-alpine as dependencies
+FROM node:24-alpine AS dependencies
 WORKDIR /app
-COPY package.json .
-RUN yarn install
+COPY package.json yarn.lock ./
+RUN yarn install --frozen-lockfile
 
-FROM dependencies as builder
+FROM dependencies AS builder
 COPY . .
+ENV NODE_ENV=production
 RUN yarn build
 
-FROM node:24-alpine as runner
+FROM node:24-alpine AS runner
 WORKDIR /app
-COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/next.config.ts ./next.config.ts
+RUN mkdir .next
 COPY --from=builder /app/public ./public
-COPY --from=builder /app/.next ./.next
+COPY --from=builder /app/.next/standalone ./
+COPY --from=builder /app/.next/static ./.next/static
 
 EXPOSE 3000
-CMD ["yarn", "start"]
+CMD ["node", "server.js"]
