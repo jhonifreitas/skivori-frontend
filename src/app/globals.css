@@ -1,0 +1,385 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ----------------------------- Casino keyframes ---------------------------- */
+@keyframes spin-reel {
+  0% {
+    transform: translateY(-55%);
+  }
+  100% {
+    transform: translateY(55%);
+  }
+}
+
+.animate-spin-reel {
+  animation: spin-reel 0.14s linear infinite;
+}
+
+/* Animated gradient background panning */
+@keyframes bg-pan {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Gold glow pulsing for buttons / frames */
+@keyframes glow-pulse {
+  0%,
+  100% {
+    box-shadow:
+      0 0 12px rgba(255, 197, 74, 0.45),
+      0 0 28px rgba(255, 197, 74, 0.25);
+  }
+  50% {
+    box-shadow:
+      0 0 22px rgba(255, 197, 74, 0.85),
+      0 0 52px rgba(255, 197, 74, 0.45);
+  }
+}
+
+.animate-glow-pulse {
+  animation: glow-pulse 2s ease-in-out infinite;
+}
+
+/* Shimmering gradient text */
+@keyframes text-shimmer {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
+  }
+}
+
+.animate-text-shimmer {
+  background-size: 200% auto;
+  animation: text-shimmer 3s linear infinite;
+}
+
+/* Floating up/down */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Spinning coin flip */
+@keyframes coin-flip {
+  0% {
+    transform: rotateY(0deg);
+  }
+  100% {
+    transform: rotateY(360deg);
+  }
+}
+
+.animate-coin-flip {
+  animation: coin-flip 2.5s linear infinite;
+}
+
+/* Chasing marquee lights border */
+@keyframes marquee-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-marquee-spin {
+  animation: marquee-spin 6s linear infinite;
+}
+
+/* Win shake */
+@keyframes win-shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-6px) rotate(-1deg);
+  }
+  40% {
+    transform: translateX(6px) rotate(1deg);
+  }
+  60% {
+    transform: translateX(-4px) rotate(-0.5deg);
+  }
+  80% {
+    transform: translateX(4px) rotate(0.5deg);
+  }
+}
+
+.animate-win-shake {
+  animation: win-shake 0.5s ease-in-out;
+}
+
+/* Pop in */
+@keyframes pop-in {
+  0% {
+    transform: scale(0.6);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.animate-pop-in {
+  animation: pop-in 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Neon sign flicker */
+@keyframes neon-flicker {
+  0%,
+  18%,
+  22%,
+  25%,
+  53%,
+  57%,
+  100% {
+    opacity: 1;
+  }
+  20%,
+  24%,
+  55% {
+    opacity: 0.4;
+  }
+}
+
+.animate-neon-flicker {
+  animation: neon-flicker 4s infinite;
+}
+
+/* Slow ambient pulse for glows */
+@keyframes ambient-pulse {
+  0%,
+  100% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.85;
+    transform: scale(1.08);
+  }
+}
+
+.animate-ambient-pulse {
+  animation: ambient-pulse 5s ease-in-out infinite;
+}
+
+/* Casino animated backdrop */
+.casino-bg {
+  background-color: #0c0420;
+  background-image:
+    radial-gradient(
+      circle at 20% 20%,
+      rgba(168, 53, 255, 0.22),
+      transparent 45%
+    ),
+    radial-gradient(
+      circle at 80% 30%,
+      rgba(255, 46, 154, 0.18),
+      transparent 45%
+    ),
+    radial-gradient(
+      circle at 50% 90%,
+      rgba(255, 197, 74, 0.16),
+      transparent 50%
+    ),
+    linear-gradient(135deg, #150733 0%, #0a0318 60%, #1a0840 100%);
+  background-size:
+    100% 100%,
+    100% 100%,
+    100% 100%,
+    200% 200%;
+  animation: bg-pan 18s ease-in-out infinite;
+}
+
+/* Gold gradient text helper */
+.text-gradient-gold {
+  background-image: linear-gradient(
+    90deg,
+    #ffd54a 0%,
+    #fff3c4 25%,
+    #ffb800 50%,
+    #fff3c4 75%,
+    #ffd54a 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-spin-reel,
+  .casino-bg,
+  .animate-glow-pulse,
+  .animate-text-shimmer,
+  .animate-float,
+  .animate-coin-flip,
+  .animate-marquee-spin,
+  .animate-ambient-pulse,
+  .animate-neon-flicker {
+    animation: none;
+  }
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-heading: var(--font-display);
+  --font-display: var(--font-display);
+
+  --color-gold: #ffd54a;
+  --color-gold-deep: #ffb800;
+  --color-neon-pink: #ff2e9a;
+  --color-neon-cyan: #00e5ff;
+  --color-casino-purple: #a835ff;
+  --color-casino-panel: #1a0b38;
+  --color-casino-felt: #0c5c3a;
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+:root {
+  --background: #0a0318;
+  --foreground: #f7f0ff;
+  --card: #1a0b38;
+  --card-foreground: #f7f0ff;
+  --popover: #16092f;
+  --popover-foreground: #f7f0ff;
+  --primary: #ffc54a;
+  --primary-foreground: #2a1500;
+  --secondary: #2a1356;
+  --secondary-foreground: #f3e9ff;
+  --muted: #251149;
+  --muted-foreground: #b69fe0;
+  --accent: #ff2e9a;
+  --accent-foreground: #ffffff;
+  --destructive: oklch(0.62 0.22 25);
+  --border: rgba(168, 53, 255, 0.25);
+  --input: rgba(168, 53, 255, 0.18);
+  --ring: #ffc54a;
+  --chart-1: #ffc54a;
+  --chart-2: #ff2e9a;
+  --chart-3: #a835ff;
+  --chart-4: #00e5ff;
+  --chart-5: #0c5c3a;
+  --radius: 0.75rem;
+  --sidebar: #16092f;
+  --sidebar-foreground: #f7f0ff;
+  --sidebar-primary: #ffc54a;
+  --sidebar-primary-foreground: #2a1500;
+  --sidebar-accent: #2a1356;
+  --sidebar-accent-foreground: #f3e9ff;
+  --sidebar-border: rgba(168, 53, 255, 0.25);
+  --sidebar-ring: #ffc54a;
+}
+
+.dark {
+  --background: #0a0318;
+  --foreground: #f7f0ff;
+  --card: #1a0b38;
+  --card-foreground: #f7f0ff;
+  --popover: #16092f;
+  --popover-foreground: #f7f0ff;
+  --primary: #ffc54a;
+  --primary-foreground: #2a1500;
+  --secondary: #2a1356;
+  --secondary-foreground: #f3e9ff;
+  --muted: #251149;
+  --muted-foreground: #b69fe0;
+  --accent: #ff2e9a;
+  --accent-foreground: #ffffff;
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: rgba(168, 53, 255, 0.25);
+  --input: rgba(168, 53, 255, 0.18);
+  --ring: #ffc54a;
+  --chart-1: #ffc54a;
+  --chart-2: #ff2e9a;
+  --chart-3: #a835ff;
+  --chart-4: #00e5ff;
+  --chart-5: #0c5c3a;
+  --sidebar: #16092f;
+  --sidebar-foreground: #f7f0ff;
+  --sidebar-primary: #ffc54a;
+  --sidebar-primary-foreground: #2a1500;
+  --sidebar-accent: #2a1356;
+  --sidebar-accent-foreground: #f3e9ff;
+  --sidebar-border: rgba(168, 53, 255, 0.25);
+  --sidebar-ring: #ffc54a;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    @apply font-sans;
+  }
+  button:not([disabled]) {
+    @apply cursor-pointer;
+  }
+}
