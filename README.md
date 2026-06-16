@@ -78,11 +78,33 @@ src/
     └── utils/        # Helpers (format, fire-confetti, ...)
 ```
 
+## AI-Assisted Development
+
+This project was developed using [Cursor](https://cursor.com) as the AI tool throughout the entire development process.
+
+The workflow always followed the same cycle: **planning → clarifying doubts → executing tasks**. No feature was implemented without first understanding the requirements and defining an approach.
+
+Cursor was used in three modes:
+
+| Mode | Purpose |
+| ---- | ------- |
+| **Plan** | Planning tasks, breaking down requirements, and defining the implementation strategy before writing any code. |
+| **Ask** | Asking questions, clarifying requirements, and resolving doubts about the codebase, APIs, and technical decisions. |
+| **Agent** | Executing planned tasks autonomously — from scaffolding components to refactors and bug fixes. |
+
+AI assistance was applied across the following areas:
+
+- **Commits** — generating commit messages and organizing changes into logical units.
+- **Layout & UI** — creating visually appealing interfaces and component structure focused on user experience.
+- **Comments** — adding documentation to non-obvious logic where it improved readability.
+- **Autocomplete** — accelerating routine coding with context-aware suggestions.
+- **Bug fixes** — diagnosing and resolving issues found during development.
+
 ## Docker
 
 Build and run the app in a container:
 
 ```bash
 docker build -t skivori-frontend .
-docker run -p 3000:3000 --env-file .env.local skivori-frontend
+docker run -p 3000:3000 --env-file .env skivori-frontend
 ```
