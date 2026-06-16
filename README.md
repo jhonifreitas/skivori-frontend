@@ -6,6 +6,8 @@ Frontend of **Lucky Slots**, a slot machine app built with [Next.js](https://nex
 - A 3-reel slot machine with coin balance and rewards.
 - Currency exchange of the balance for display purposes.
 
+**Live demo:** [http://3.67.126.160:3000/](http://3.67.126.160:3000/)
+
 ## Tech Stack
 
 - Next.js 16 + React 19 (App Router, Server Actions)
